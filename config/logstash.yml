@@ -1,0 +1,5 @@
+http.host: "0.0.0.0"
+pipeline.batch.delay: 10
+pipeline.batch.size: 10
+pipeline.ecs_compatibility: disabled
+dead_letter_queue.enable: true

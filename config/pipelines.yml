@@ -1,0 +1,7 @@
+- pipeline.id: backup_elastics
+  pipeline.ecs_compatibility: disabled
+  path.config: "/usr/share/logstash/pipeline/dead-letter-queue.conf"
+
+- pipeline.id: "read-file-log"
+  pipeline.ecs_compatibility: disabled
+  path.config: "/usr/share/logstash/pipeline/read-file.conf"

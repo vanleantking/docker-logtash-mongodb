@@ -1,0 +1,30 @@
+version: '3.9'
+services:
+  logstash:
+    # image: logstash:7.17.6
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    ports:
+      - 5001:5001
+      - 5002:5002
+      - 5003:5003
+    volumes:
+      - "./config:/usr/share/logstash/config/"
+      - "./pipeline:/usr/share/logstash/pipeline/"
+      - "./data/log:/home/data/"
+      - "./data/dlq:/usr/share/logstash/data/dead_letter_queue"
+  elasticsearch:
+    image: elasticsearch:7.17.5
+    restart: always
+    ports:
+      - 9002:9002
+    environment:
+      - discovery.type=single-node
+  mongodb:
+    image: mongo:4.4.12
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
